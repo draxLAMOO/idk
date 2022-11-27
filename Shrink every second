@@ -1,0 +1,20 @@
+#parent {
+  height: 300px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+#header {
+  background: lightblue;
+}
+#content {
+  flex: 1;
+  overflow-y: auto;
+  background: lightgreen;
+}
+
+<div id="parent">
+   <div id="header"><br><br><br></div>
+   <div id="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque culpa consequuntur repellat ex, ut cumque fugit minus, itaque omnis, cum quidem in debitis. Consequuntur perspiciatis corporis nostrum similique eveniet voluptates cumque molestias rerum, distinctio accusamus? Quas explicabo, ea praesentium ad velit rem accusamus officia quibusdam ut accusantium possimus dignissimos dolores ipsum quia placeat tenetur omnis veritatis molestias voluptatibus consequuntur odit consectetur vero, voluptas corporis laudantium! Rem laborum excepturi quia temporibus, veniam blanditiis tempore eaque nostrum suscipit, quam laboriosam ratione provident obcaecati iste magni molestiae explicabo quibusdam expedita veritatis officia, debitis officiis sed. Neque veniam eius saepe. Quo doloremque, repellat mollitia!</div>
+</div>
