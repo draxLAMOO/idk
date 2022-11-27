@@ -1,0 +1,24 @@
+speed1 = int(sys.argv[1])
+speed2 = int(sys.argv[2])
+
+
+if speed1 > 70 and speed2 > 70:
+  print ('2 fast cars')
+if speed1 > 70 and speed2 <b><=</b> 70:
+  print ('1 fast car')
+if speed1 <b><=</b> and speed2 > 70:
+  print ('1 fast cars')  # probably a typo? cars -> car
+if speed1 <b><=</b> 70 and speed2 <b><=</b> 70:
+  print ('no fast cars')
+
+import sys
+speed1 = int(sys.argv[1])
+speed2 = int(sys.argv[2])
+
+
+if speed1 > 70 and speed2 > 70:
+  print ('2 fast cars')
+<b>elif</b> speed1 > 70 <b>or</b> speed2 > 70:
+  print ('1 fast car')
+<b>else</b>:
+  print ('no fast cars')
