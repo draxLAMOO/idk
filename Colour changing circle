@@ -1,0 +1,137 @@
+const context = canvas.getContext("2d");
+// for canvas size
+const window_width = window.innerWidth;
+const window_height = window.innerHeight;
+
+canvas.width = window_width;
+canvas.height = window_height;
+
+// object is created using class
+class Circle {
+  constructor(xpos, ypos, radius, speed, color, text) {
+    this.position_x = xpos;
+    this.position_y = ypos;
+    this.radius = radius;
+    this.speed = speed;
+    this.dx = 1 * this.speed;
+    this.dy = 1 * this.speed;
+    this.text = text;
+    this.color = color;
+    this.fillColor = "white" // added as a default value
+    this.hit_counter = 0
+  }
+
+  // outline & text in circle
+  drawOutline({
+    ctx
+  }) {
+    ctx.beginPath();
+    ctx.strokeStyle = this.color;
+    ctx.fillStyle = this.color
+    ctx.fillText(this.text, this.position_x, this.position_y);
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle"
+    ctx.font = "20px Arial";
+    ctx.lineWidth = 5;
+    ctx.arc(this.position_x, this.position_y, this.radius, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.closePath();
+  }
+
+  // background of the circle
+  drawFill({
+    ctx,
+    color
+  }) {
+    ctx.beginPath();
+    ctx.fillStyle = this.fillColor
+    ctx.arc(this.position_x, this.position_y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  // drawing the circle from two pieces
+  draw(ctx) {
+    this.drawFill({
+      ctx
+    })
+    this.drawOutline({
+      ctx
+    })
+  }
+
+  // color change function
+  setColor({
+    outline,
+    fill
+  }) {
+    this.color = outline
+    this.fillColor = fill
+  }
+
+  update(ctx) {
+    this.text = this.hit_counter;
+    ctx.clearRect(0, 0, window_width, window_height)
+    this.draw(context);
+
+    if ((this.position_x + this.radius) > window_width) {
+      this.dx = -this.dx;
+      this.hit_counter++;
+    }
+
+    if ((this.position_x - this.radius) < 0) {
+      this.dx = -this.dx;
+      this.hit_counter++;
+    }
+
+    if ((this.position_y - this.radius) < 0) {
+      this.dy = -this.dy;
+      this.hit_counter++;
+    }
+
+    if ((this.position_y + this.radius) > window_height) {
+      this.dy = -this.dy;
+      this.hit_counter++;
+    }
+
+    this.position_x += this.dx;
+    this.position_y += this.dy;
+  }
+}
+
+const my_circle = new Circle(100, 100, 50, 3, 'Black');
+
+const updateCircle = function(ctx) {
+  requestAnimationFrame(() => updateCircle(ctx));
+  my_circle.update(ctx);
+}
+
+updateCircle(context);
+
+// I tried it in bllk function but it didn't work for me.     
+function bllk1() {
+  canvas.style.background = "black";
+  my_circle.setColor({
+    outline: "red",
+    fill: "yellow"
+  })
+}
+
+function bllk() {
+  canvas.style.background = "black";
+  my_circle.setColor({
+    outline: "black",
+    fill: "blue"
+  })
+  setInterval(() => {
+    const fill = my_circle.fillColor === "blue" ? "red" : "blue"
+    my_circle.setColor({
+      outline: "black",
+      fill,
+    })
+  }, 1000);
+}
+
+<!-- On clicking button Hi How to apply two color one by one to the numbers inside the circle ? I tried it in bllk function but it didn't work for me. -->
+<button onclick="bllk()">Hi</button>
+<canvas id="canvas"></canvas>
