@@ -1,0 +1,7 @@
+text-shadow: #EEEE00 0 0 10px;
+
+
+filter: glow(color=#EEEE00,strength=3);
+
+
+text-shadow: #EEEE00 0 0 10px, #FF0000 5px 5px 5px;
