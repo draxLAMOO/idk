@@ -1,0 +1,26 @@
+c.save();
+}
+
+function draw() {
+    // counter = 0
+    c.save();
+    // counter = 1
+
+    wheel(1); // contains save() call
+    // counter = 2
+
+    c.restore();
+    // counter = 1
+    c.save();
+    // counter = 2
+
+    wheel(2); // contains save() call
+    // counter = 3
+
+    c.restore();
+    // counter = 2;
+    c.restore();
+    // counter = 1;
+}
+
+
