@@ -1,0 +1,47 @@
+
+    <div class='bg' id='firstBg'></div>
+    <div class='bg' id='secondBg'></div>
+
+    <...Your Stuff...>
+
+</body>
+
+
+body {
+    background: transparent;
+}
+
+.bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    z-index: -1;
+    background-size: cover;
+    transition: 3s ease-in;
+}
+
+#secondBg {
+    display: none;
+}
+
+
+setInterval(function(){
+    $.post('getBackgroundImages.php', {  }, function(data) {
+        var imageCollection = JSON.parse(data);
+        var imageNumber = Math.floor(Math.random() * 100);
+        var imageLink = imageCollection.hits[imageNumber].largeImageURL;
+        if ($('#firstBg').css('display') == 'none') {
+            $('#firstBg').css("background-image","url('"+imageLink+"')");
+            $('#firstBg').fadeIn();
+            $('#secondBg').fadeOut();
+        }
+        else {
+            $('#secondBg').css("background-image","url('"+imageLink+"')");
+            $('#secondBg').fadeIn();
+            $('#firstBg').fadeOut(); 
+        }
+    });
+},60000);
